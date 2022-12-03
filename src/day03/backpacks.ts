@@ -5,12 +5,7 @@ export type Backpack = string[];
 export async function* getBackpacksFromFile(
   filename: string
 ): AsyncGenerator<[Backpack, Backpack]> {
-  for await (const line of getLinesFromFile(filename)) {
-    if (line.length === 0) {
-      continue;
-    }
-
-    const items = line.split("");
+  for await (const items of getFullBackpacksFromFile(filename)) {
     const halves: [Backpack, Backpack] = [
       items.slice(0, items.length / 2),
       items.slice(items.length / 2),
@@ -33,7 +28,7 @@ export async function* getFullBackpacksFromFile(
 }
 
 export function getItemInBothBackpacks(a: Backpack, b: Backpack) {
-  return a.filter((item) => b.includes(item))[0];
+  return getItemInAllBackpacks(a, b);
 }
 
 export function getItemInAllBackpacks(
