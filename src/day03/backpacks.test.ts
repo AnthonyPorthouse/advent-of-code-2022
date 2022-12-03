@@ -3,7 +3,7 @@ import {
   getBackpacksFromFile,
   getFullBackpacksFromFile,
   getItemInAllBackpacks,
-  getItemInBothBackpacks
+  getItemInBothBackpacks,
 } from "./backpacks.js";
 import exp from "constants";
 
@@ -14,86 +14,39 @@ describe("backpacks", () => {
     it("should return a generator with Backpacks", async () => {
       const generator = getFullBackpacksFromFile(exampleFile);
 
-      expect((await generator.next()).value).toStrictEqual([
-        "v",
-        "J",
-        "r",
-        "w",
-        "p",
-        "W",
-        "t",
-        "w",
-        "J",
-        "g",
-        "W",
-        "r",
-        "h",
-        "c",
-        "s",
-        "F",
-        "M",
-        "M",
-        "f",
-        "F",
-        "F",
-        "h",
-        "F",
-        "p",
-      ]);
-      expect((await generator.next()).value).toStrictEqual([
-        "j",
-        "q",
-        "H",
-        "R",
-        "N",
-        "q",
-        "R",
-        "j",
-        "q",
-        "z",
-        "j",
-        "G",
-        "D",
-        "L",
-        "G",
-        "L",
-        "r",
-        "s",
-        "F",
-        "M",
-        "f",
-        "F",
-        "Z",
-        "S",
-        "r",
-        "L",
-        "r",
-        "F",
-        "Z",
-        "s",
-        "S",
-        "L",
-      ]);
-      expect((await generator.next()).value).toStrictEqual("PmmdzqPrVvPwwTWBwg".split(''));
-      expect((await generator.next()).value).toStrictEqual("wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn".split(''));
-      expect((await generator.next()).value).toStrictEqual("ttgJtRGJQctTZtZT".split(''));
-      expect((await generator.next()).value).toStrictEqual("CrZsJsPPZsGzwwsLwLmpwMDw".split(''));
+      expect((await generator.next()).value).toStrictEqual(
+        "vJrwpWtwJgWrhcsFMMfFFhFp".split("")
+      );
+      expect((await generator.next()).value).toStrictEqual(
+        "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL".split("")
+      );
+      expect((await generator.next()).value).toStrictEqual(
+        "PmmdzqPrVvPwwTWBwg".split("")
+      );
+      expect((await generator.next()).value).toStrictEqual(
+        "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn".split("")
+      );
+      expect((await generator.next()).value).toStrictEqual(
+        "ttgJtRGJQctTZtZT".split("")
+      );
+      expect((await generator.next()).value).toStrictEqual(
+        "CrZsJsPPZsGzwwsLwLmpwMDw".split("")
+      );
       expect((await generator.next()).value).toBeUndefined();
-
     });
   });
 
-  describe('getBackpacksFromFile', async () => {
-    it('should return two even backpacks in each iteration', async () => {
+  describe("getBackpacksFromFile", async () => {
+    it("should return two even backpacks in each iteration", async () => {
       const generator = getBackpacksFromFile(exampleFile);
 
-      const results = (await generator.next()).value
+      const results = (await generator.next()).value;
 
-      expect(results.length).toBe(2)
-      expect(results[0].length === results[1].length).toBe(true)
-    })
+      expect(results.length).toBe(2);
+      expect(results[0].length === results[1].length).toBe(true);
+    });
 
-    it('should return iterations for each file in the file', async () => {
+    it("should return iterations for each file in the file", async () => {
       const generator = getBackpacksFromFile(exampleFile);
 
       await generator.next();
@@ -104,11 +57,11 @@ describe("backpacks", () => {
       await generator.next();
       await generator.next();
 
-      const results = (await generator.next()).value
+      const results = (await generator.next()).value;
 
-      expect(results).toBeUndefined()
-    })
-  })
+      expect(results).toBeUndefined();
+    });
+  });
 
   describe("getItemInBothBackpacks", async () => {
     it("should return items in both backpacks", async () => {
