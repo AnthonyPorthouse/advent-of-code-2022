@@ -7,32 +7,31 @@ import {
 } from "./backpacks.js";
 import { getItemScore } from "./item.js";
 
-async function runPart1(filename: string) {
+export const exampleFile = new URL("./example.txt", import.meta.url).pathname;
+export const inputFile = new URL("./input.txt", import.meta.url).pathname;
+
+export async function runPart1(filename: string) {
   console.time(`Day 03 Part 1 ${filename}`);
-  console.log(`Running Part 1 on ${filename}`);
-  const file = new URL(`./${filename}`, import.meta.url).pathname;
 
   let total = 0;
 
-  for await (const [a, b] of getBackpacksFromFile(file)) {
+  for await (const [a, b] of getBackpacksFromFile(filename)) {
     const item = getItemInBothBackpacks(a, b);
     total += getItemScore(item);
   }
 
-  console.log(`Total Value: ${total}`);
   console.timeEnd(`Day 03 Part 1 ${filename}`);
+  return total;
 }
 
-async function runPart2(filename: string) {
+export async function runPart2(filename: string) {
   console.time(`Day 03 Part 2 ${filename}`);
   console.log(`Running Part 2 on ${filename}`);
-  const file = new URL(`./${filename}`, import.meta.url).pathname;
-
   let total = 0;
 
   let group: Backpack[] = [];
 
-  for await (const backpack of getFullBackpacksFromFile(file)) {
+  for await (const backpack of getFullBackpacksFromFile(filename)) {
     if (group.length !== 3) {
       group.push(backpack);
     }
@@ -46,14 +45,10 @@ async function runPart2(filename: string) {
     group = [];
   }
 
-  console.log(`Total Value: ${total}`);
   console.timeEnd(`Day 03 Part 2 ${filename}`);
+
+  return total;
 }
 
-console.time("Day 03");
-await runPart1("example.txt");
-await runPart1("input.txt");
-
-await runPart2("example.txt");
-await runPart2("input.txt");
-console.timeEnd("Day 03");
+console.log(`Total Value: ${await runPart1(inputFile)}`);
+console.log(`Total Value: ${await runPart2(inputFile)}`);

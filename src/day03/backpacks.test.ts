@@ -5,8 +5,7 @@ import {
   getItemInAllBackpacks,
   getItemInBothBackpacks,
 } from "./backpacks.js";
-
-const exampleFile = new URL(`./example.txt`, import.meta.url).pathname;
+import { exampleFile } from "./index.js";
 
 describe("backpacks", () => {
   describe("getFullBackpacksFromFile", async () => {
