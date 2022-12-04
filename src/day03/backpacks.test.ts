@@ -5,7 +5,6 @@ import {
   getItemInAllBackpacks,
   getItemInBothBackpacks,
 } from "./backpacks.js";
-import exp from "constants";
 
 const exampleFile = new URL(`./example.txt`, import.meta.url).pathname;
 
