@@ -6,4 +6,4 @@ These solutions are written in TypeScript using node 19.2.0
 
 ## Running these solutions
 
-`npx ts-node src/day01/index.ts`
+`./bin/advent-of-code.js day <number>`
