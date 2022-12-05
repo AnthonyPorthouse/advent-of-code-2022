@@ -1,12 +1,10 @@
 {
-  "name": "advent-of-code-2022",
+  "name": "@anthonyporthouse/advent-of-code-2022",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
-  "bin": {
-    "advent-of-code-2022": "bin/advent-of-code.js"
-  },
+  "bin": "bin/advent-of-code.js",
   "scripts": {
     "format": "prettier --write .",
     "test": "vitest --ui",
