@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/AnthonyPorthouse/advent-of-code-2022/compare/v1.0.0...v1.0.1) (2022-12-05)
+
+
+### Bug Fixes
+
+* pre-commit hook now no longer runs watch mode vitest ([62f107d](https://github.com/AnthonyPorthouse/advent-of-code-2022/commit/62f107d526dbad1852c70be6b95f244a1aa6459b))
+
 ## 1.0.0 (2022-12-05)
 
 
