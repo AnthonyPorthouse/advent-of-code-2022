@@ -1,4 +1,21 @@
 import { Command } from 'commander'
+import {memoryUsage,nextTick, on} from 'node:process'
+
+let maxMemoryUsage = 0
+
+const getMemoryUsage = () => {
+  const memUsage = memoryUsage.rss();
+  if (memUsage > maxMemoryUsage) {
+    maxMemoryUsage = memUsage
+  }
+
+  setImmediate(() => nextTick(getMemoryUsage)).unref()
+}
+nextTick(getMemoryUsage)
+
+on('exit', () => {
+  console.log(`Max Memory Used: ${new Intl.NumberFormat().format(maxMemoryUsage / 1024 / 1024)}Mb`)
+})
 
 const program = new Command()
   .name('advent-of-code.js-2022')
