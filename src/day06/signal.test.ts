@@ -1,15 +1,27 @@
 import { describe, expect, it } from "vitest";
-import { findFirstMarkerIndex } from "./signal.js";
+import { findFirstPacketMarkerIndex, findFirstMessageMarkerIndex } from "./signal.js";
 
-export const examples = [
-  {input: 'bvwbjplbgvbhsrlpgdmjqwftvncz', part1Result: 5},
-  {input: 'nppdvjthqldpwncqszvftbrmjlhg', part1Result: 6},
-  {input: 'nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg', part1Result: 10},
-  {input: 'zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw', part1Result: 11},
-]
+export const examples =
 
-describe('findFirstMarker', () => {
-  it.each(examples)('returns $part1Result for $input', async ({input, part1Result}) => {
-    expect(findFirstMarkerIndex(input)).toBe(part1Result)
+describe('findFirstMarkerIndex', () => {
+  it.each([
+    {input: 'bvwbjplbgvbhsrlpgdmjqwftvncz', result: 5},
+    {input: 'nppdvjthqldpwncqszvftbrmjlhg', result: 6},
+    {input: 'nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg', result: 10},
+    {input: 'zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw', result: 11},
+  ])('returns $result for $input', async ({input, result}) => {
+    expect(findFirstPacketMarkerIndex(input)).toBe(result)
+  })
+})
+
+describe('findFirstMessageMarkerIndex', () => {
+  it.each([
+    {input: 'mjqjpqmgbljsphdztnvjfqwrcgsmlb', result: 19},
+    {input: 'bvwbjplbgvbhsrlpgdmjqwftvncz', result: 23},
+    {input: 'nppdvjthqldpwncqszvftbrmjlhg', result: 23},
+    {input: 'nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg', result: 29},
+    {input: 'zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw', result: 26},
+  ])('returns $result for $input', async ({input, result}) => {
+    expect(findFirstMessageMarkerIndex(input)).toBe(result)
   })
 })
