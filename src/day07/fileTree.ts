@@ -1,3 +1,5 @@
+import memoizee from "memoizee";
+
 type NodeType = 'file' | 'dir'
 
 export class Node {
@@ -10,6 +12,8 @@ export class Node {
     this.name = name
     this.type = type
     this.size = size
+
+    this.getTotalSize = memoizee(this.getTotalSize)
   }
 
   getTotalSize() {
@@ -36,6 +40,18 @@ export class Node {
     }
 
     return dirs
+  }
+
+  getSmallestDirectoryWithMinSize(minSize: number, currentSmallest: Node) {
+    for (const dir of this.getContents().filter((node) => node.type === 'dir')) {
+      if (dir.getTotalSize() >= minSize && dir.getTotalSize() < currentSmallest.getTotalSize()) {
+        currentSmallest = dir
+      }
+
+      currentSmallest = dir.getSmallestDirectoryWithMinSize(minSize, currentSmallest)
+    }
+
+    return currentSmallest
   }
 
   addNode(node: Node) {

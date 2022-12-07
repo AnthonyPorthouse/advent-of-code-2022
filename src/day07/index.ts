@@ -15,4 +15,19 @@ export async function runPart1(filename: string) {
   return total
 }
 
+export async function runPart2(filename: string, maxSize: number, need: number) {
+  console.time(`Day 7 Part 2 ${filename}`)
+
+  const tree = await getTreeFromFile(filename)
+
+  const toSave = tree.getTotalSize() - (maxSize - need)
+
+  const total = tree.getSmallestDirectoryWithMinSize(toSave, tree).getTotalSize()
+
+  console.timeEnd(`Day 7 Part 2 ${filename}`)
+
+  return total
+}
+
 console.log(`Total Size: ${await runPart1(inputFile)}`)
+console.log(`Total Size: ${await runPart2(inputFile, 70000000, 30000000)}`)

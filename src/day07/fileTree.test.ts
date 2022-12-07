@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { Node } from './fileTree.js'
+import exp from "constants";
 
 describe('Node', () => {
   it('can print directory lines correctly', async () => {
@@ -37,6 +38,10 @@ describe('Node', () => {
 
     it('can recursively calculate total tree size', async () => {
       expect(tree.getTotalSize()).toBe(896)
+    })
+
+    it('can return a node with the smallest directory at least as big as a value given', async () => {
+      expect(tree.getSmallestDirectoryWithMinSize(192, tree).name).toBe('b')
     })
   })
 })
