@@ -1,5 +1,5 @@
 import { Command } from 'commander'
-import {memoryUsage,nextTick, on} from 'node:process'
+import {memoryUsage,nextTick} from 'node:process'
 
 let maxMemoryUsage = 0
 
@@ -13,7 +13,7 @@ const getMemoryUsage = () => {
 }
 nextTick(getMemoryUsage)
 
-on('exit', () => {
+process.on('exit', () => {
   console.log(`Max Memory Used: ${new Intl.NumberFormat().format(maxMemoryUsage / 1024 / 1024)}Mb`)
 })
 
