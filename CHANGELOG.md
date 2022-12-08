@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.0](https://github.com/AnthonyPorthouse/advent-of-code-2022/compare/v1.2.0...v1.3.0) (2022-12-08)
+
+
+### Features
+
+* add run function to avoid mangling coverage report numbers ([aafe589](https://github.com/AnthonyPorthouse/advent-of-code-2022/commit/aafe589fd2af072907d282ed2ab43c42e5bb0683))
+* day 8 part 1 ([b1b6566](https://github.com/AnthonyPorthouse/advent-of-code-2022/commit/b1b65666e15a6cf699d9a3cf62d8b2170f117cb1))
+* day 8 part 2 ([1e81211](https://github.com/AnthonyPorthouse/advent-of-code-2022/commit/1e81211c4938f6afda59337833471b1f6adaf4fd))
+
 ## [1.2.0](https://github.com/AnthonyPorthouse/advent-of-code-2022/compare/v1.1.0...v1.2.0) (2022-12-07)
 
 
