@@ -39,5 +39,7 @@ export async function runPart2(filename: string) {
   return total
 }
 
-console.log(`Visible trees: ${await runPart1(inputFile)}`)
-console.log(`Best Scenic Score: ${await runPart2(inputFile)}`)
+export async function run() {
+  console.log(`Visible trees: ${await runPart1(inputFile)}`)
+  console.log(`Best Scenic Score: ${await runPart2(inputFile)}`)
+}

@@ -50,5 +50,7 @@ export async function runPart2(filename: string) {
   return total;
 }
 
-console.log(`Total Value: ${await runPart1(inputFile)}`);
-console.log(`Total Value: ${await runPart2(inputFile)}`);
+export async function run() {
+  console.log(`Total Value: ${await runPart1(inputFile)}`);
+  console.log(`Total Value: ${await runPart2(inputFile)}`);
+}

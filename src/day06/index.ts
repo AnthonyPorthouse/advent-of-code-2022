@@ -41,5 +41,7 @@ export async function runPart2(filename: string) {
   return result
 }
 
-console.log(`First Packet Marker: ${await runPart1(inputFile)}`);
-console.log(`First Message Marker: ${await runPart2(inputFile)}`);
+export async function run() {
+  console.log(`First Packet Marker: ${await runPart1(inputFile)}`);
+  console.log(`First Message Marker: ${await runPart2(inputFile)}`);
+}

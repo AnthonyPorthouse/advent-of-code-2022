@@ -10,10 +10,6 @@ export async function runPart1(filename: string) {
   const moves = await getMoves(filename);
 
   for (const move of moves) {
-    console.log(
-      `To Move ${move.count} from ${move.from - 1} to ${move.to - 1}`
-    );
-
     for (let i = 0; i < move.count; i++) {
       const val = state[move.from - 1].pop() as string;
 
@@ -33,10 +29,6 @@ export async function runPart2(filename: string) {
   const moves = await getMoves(filename);
 
   for (const move of moves) {
-    console.log(
-      `To Move ${move.count} from ${move.from - 1} to ${move.to - 1}`
-    );
-
     const chunk = state[move.from - 1].splice(-move.count);
 
     state[move.to - 1].push(...chunk);
@@ -47,5 +39,7 @@ export async function runPart2(filename: string) {
   return state.reduce((val, col) => val + col.pop(), "");
 }
 
-console.log(`Message: ${await runPart1(inputFile)}`);
-console.log(`Message: ${await runPart2(inputFile)}`);
+export async function run() {
+  console.log(`Message: ${await runPart1(inputFile)}`);
+  console.log(`Message: ${await runPart2(inputFile)}`);
+}

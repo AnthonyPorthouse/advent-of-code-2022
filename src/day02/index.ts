@@ -45,5 +45,7 @@ export async function runPart2(filename: string) {
   return score;
 }
 
-console.log(`Total Score: ${await runPart1(inputFile)}`);
-console.log(`Total Score: ${await runPart2(inputFile)}`);
+export async function run() {
+  console.log(`Total Score: ${await runPart1(inputFile)}`);
+  console.log(`Total Score: ${await runPart2(inputFile)}`);
+}
