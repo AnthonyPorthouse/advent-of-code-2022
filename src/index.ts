@@ -21,8 +21,13 @@ const program = new Command()
   .name('advent-of-code.js-2022')
 
 program.command('day <day>')
-  .action((day: number) => {
-    import(`./day${day.toString().padStart(2, '0')}/index.js`)
+  .action(async (day: number) => {
+    try {
+      const {run}: {run: () => void} = await import(`./day${day.toString().padStart(2, '0')}/index.js`)
+      run()
+    } catch (e) {
+      console.error(`Day ${day} not valid`)
+    }
   })
 
 program.parse()

@@ -29,5 +29,7 @@ export async function runPart2(filename: string, maxSize: number, need: number) 
   return total
 }
 
-console.log(`Total Size: ${await runPart1(inputFile)}`)
-console.log(`Total Size: ${await runPart2(inputFile, 70000000, 30000000)}`)
+export async function run() {
+  console.log(`Total Size: ${await runPart1(inputFile)}`)
+  console.log(`Total Size: ${await runPart2(inputFile, 70000000, 30000000)}`)
+}
