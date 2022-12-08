@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/AnthonyPorthouse/advent-of-code-2022/compare/v1.3.0...v1.3.1) (2022-12-08)
+
+
+### Bug Fixes
+
+* day 7 code smells ([3a5dcb0](https://github.com/AnthonyPorthouse/advent-of-code-2022/commit/3a5dcb0b97806cb46954e5b3e7f5c86dad17ec14))
+
 ## [1.3.0](https://github.com/AnthonyPorthouse/advent-of-code-2022/compare/v1.2.0...v1.3.0) (2022-12-08)
 
 
