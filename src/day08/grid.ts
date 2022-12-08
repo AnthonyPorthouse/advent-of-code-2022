@@ -84,3 +84,71 @@ function findVisibleInRow(input: NumericGrid, y: number) {
 
   return visible
 }
+
+export function getBestScenicScore(input: NumericGrid) {
+  let bestScore = 0
+
+  const rows = input.length
+  const cols = input[0].length
+
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const score = getScenicScore(input, [x, y])
+
+      if (score > bestScore) {
+        bestScore = score
+      }
+    }
+  }
+
+  return bestScore
+}
+
+function getScenicScore(input: NumericGrid, from: Vector2) {
+
+  const [originX, originY] = from
+
+  let maxHeight = input[originY][originX]
+
+  // Check Up
+  let yPosScore = 0
+  for (let y = originY - 1; y >= 0; y--) {
+    yPosScore += 1
+
+    if (input[y][originX] >= maxHeight) {
+      break
+    }
+  }
+
+  // Check Down
+  let yNegScore = 0
+  for (let y = originY + 1; y < input.length; y++) {
+    yNegScore += 1
+
+    if (input[y][originX] >= maxHeight) {
+      break
+    }
+  }
+
+  // Check Left
+  let xPosScore = 0
+  for (let x = originX - 1; x >= 0; x--) {
+    xPosScore += 1
+
+    if (input[originY][x] >= maxHeight) {
+      break
+    }
+  }
+
+  // Check Right
+  let xNegScore = 0
+  for (let x = originX + 1; x < input.length; x++) {
+    xNegScore += 1
+
+    if (input[originY][x] >= maxHeight) {
+      break
+    }
+  }
+
+  return xPosScore * xNegScore * yPosScore * yNegScore
+}
