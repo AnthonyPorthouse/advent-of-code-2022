@@ -1,4 +1,4 @@
-import { createEmptyPointGrid, Vector2, Vector2Grid } from "../utils/grid.js";
+import { createEmptyPointGrid, Vector2 } from "../utils/grid.js";
 import { getLinesFromFile } from "../utils/loadFile.js";
 
 enum Direction {
