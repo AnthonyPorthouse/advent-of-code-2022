@@ -1,6 +1,5 @@
 import { createEmptyPointGrid, Vector2, Vector2Grid } from "../utils/grid.js";
 import { getLinesFromFile } from "../utils/loadFile.js";
-import { debug } from "util";
 
 enum Direction {
   UP = "U",
@@ -19,25 +18,6 @@ export async function getMoves(file: string) {
   }
 
   return moves;
-}
-
-export function doMoves(moves: [Direction, number][]) {
-  const tailVisited = createEmptyPointGrid();
-
-  let head = new Vector2(0, 0);
-  let tail = new Vector2(0, 0);
-
-  tailVisited[tail.toString()] = tail;
-
-  for (const [direction, count] of moves) {
-    for (let i = 0; i < count; i++) {
-      head = doMove(head, direction);
-      tail = doMoveTail(tail, head);
-      tailVisited[tail.toString()] = tail;
-    }
-  }
-
-  return tailVisited;
 }
 
 export function doMovesForN(moves: [Direction, number][], n: number) {
@@ -116,33 +96,4 @@ export function doMoveTail(tail: Vector2, head: Vector2) {
     default: // anything else
       return new Vector2(tail.x, tail.y);
   }
-}
-
-export function drawGrid(grid: Vector2Grid) {
-  let minX = 0,
-    maxX = 0,
-    minY = 0,
-    maxY = 0;
-  Object.values(grid).forEach((point) => {
-    minX = Math.min(minX, point.x);
-    minY = Math.min(minY, point.y);
-    maxX = Math.max(maxX, point.x);
-    maxY = Math.max(maxY, point.y);
-  });
-
-  let out = "";
-
-  for (let y = minY - 1; y <= maxY + 1; y++) {
-    for (let x = minX - 1; x <= maxX + 1; x++) {
-      if (x === 0 && y === 0) {
-        out += "s";
-        continue;
-      }
-
-      out += Object.keys(grid).includes(`${x},${y}`) ? "#" : ".";
-    }
-    out += "\n";
-  }
-
-  return out;
 }
