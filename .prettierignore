@@ -1,4 +1,6 @@
+commitlint.config.cjs
 package.json
 package-lock.json
 src/**/*.js
 coverage
+*.md
