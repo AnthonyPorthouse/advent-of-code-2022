@@ -28,7 +28,7 @@ async function runPart1(filename: string) {
 
   console.timeEnd(`day 01 part 1 ${filename}`);
 
-  return elves[largestElfTotal]
+  return elves[largestElfTotal];
 }
 
 async function runPart2(filename: string) {
@@ -56,11 +56,11 @@ async function runPart2(filename: string) {
   });
   console.timeEnd(`day 01 part 2 ${filename}`);
 
-  return elves.slice(0, 3).reduce((p, v) => p + v, 0)
+  return elves.slice(0, 3).reduce((p, v) => p + v, 0);
 }
 
 export async function run() {
   console.log(`Largest Value - ${await runPart1(inputFile)}`);
 
-  console.log(`Combined top 3: ${await runPart2(inputFile)}`)
+  console.log(`Combined top 3: ${await runPart2(inputFile)}`);
 }

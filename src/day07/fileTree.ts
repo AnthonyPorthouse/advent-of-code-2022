@@ -1,90 +1,100 @@
 import memoizee from "memoizee";
 
-type NodeType = 'file' | 'dir'
+type NodeType = "file" | "dir";
 
 export class Node {
-  name: string
-  type: NodeType
-  readonly size: number = 0
-  contents: {[key: string]: Node} = {}
+  name: string;
+  type: NodeType;
+  readonly size: number = 0;
+  contents: { [key: string]: Node } = {};
 
   constructor(name: string, type: NodeType, size: number = 0) {
-    this.name = name
-    this.type = type
-    this.size = size
+    this.name = name;
+    this.type = type;
+    this.size = size;
 
-    this.getTotalSize = memoizee(this.getTotalSize)
+    this.getTotalSize = memoizee(this.getTotalSize);
   }
 
   getTotalSize() {
-    if (this.type === 'file') {
-      return this.size
+    if (this.type === "file") {
+      return this.size;
     }
 
-    let size = 0
+    let size = 0;
 
     for (const node of this.getContents()) {
-      size += node.getTotalSize()
+      size += node.getTotalSize();
     }
 
-    return size
+    return size;
   }
 
   getDirectoriesWithMaxSize(size: number, dirs: Node[] = []) {
-    for (const dir of this.getContents().filter((node) => node.type === 'dir')) {
+    for (const dir of this.getContents().filter(
+      (node) => node.type === "dir"
+    )) {
       if (dir.getTotalSize() <= size) {
-        dirs.push(dir)
+        dirs.push(dir);
       }
 
-      dirs = dir.getDirectoriesWithMaxSize(size, dirs)
+      dirs = dir.getDirectoriesWithMaxSize(size, dirs);
     }
 
-    return dirs
+    return dirs;
   }
 
   getSmallestDirectoryWithMinSize(minSize: number, currentSmallest: Node) {
-    for (const dir of this.getContents().filter((node) => node.type === 'dir')) {
-      if (dir.getTotalSize() >= minSize && dir.getTotalSize() < currentSmallest.getTotalSize()) {
-        currentSmallest = dir
+    for (const dir of this.getContents().filter(
+      (node) => node.type === "dir"
+    )) {
+      if (
+        dir.getTotalSize() >= minSize &&
+        dir.getTotalSize() < currentSmallest.getTotalSize()
+      ) {
+        currentSmallest = dir;
       }
 
-      currentSmallest = dir.getSmallestDirectoryWithMinSize(minSize, currentSmallest)
+      currentSmallest = dir.getSmallestDirectoryWithMinSize(
+        minSize,
+        currentSmallest
+      );
     }
 
-    return currentSmallest
+    return currentSmallest;
   }
 
   addNode(node: Node) {
-    this.contents[node.name] = node
+    this.contents[node.name] = node;
   }
 
   getNode(name: string) {
-    return this.contents[name]
+    return this.contents[name];
   }
 
   getContents() {
-    return Object.values(this.contents)
+    return Object.values(this.contents);
   }
 
   getTreeString(depth: number = 0) {
-    let out: string[] = []
+    let out: string[] = [];
 
-    out.push(`${''.padStart(depth * 2, ' ')}- ${this.toString()}`)
+    out.push(`${"".padStart(depth * 2, " ")}- ${this.toString()}`);
 
-    if (this.type === 'dir') {
+    if (this.type === "dir") {
       for (const node of this.getContents()) {
-        out.push(node.getTreeString(depth + 1))
+        out.push(node.getTreeString(depth + 1));
       }
     }
 
-    return out.join('\n')
+    return out.join("\n");
   }
 
   toString() {
-    if (this.type === 'dir') {
-      return `${this.name} (dir)`
+    if (this.type === "dir") {
+      return `${this.name} (dir)`;
     }
 
-    return `${this.name} (file, size=${this.size})`
+    return `${this.name} (file, size=${this.size})`;
   }
 }
