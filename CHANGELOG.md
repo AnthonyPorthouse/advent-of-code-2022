@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.0](https://github.com/AnthonyPorthouse/advent-of-code-2022/compare/v1.4.0...v1.5.0) (2022-12-10)
+
+
+### Features
+
+* day 10 part 1 ([0938dac](https://github.com/AnthonyPorthouse/advent-of-code-2022/commit/0938dac7c0b5e44c4b132b2eec34096f0848f23e))
+* day 10 part 2 ([210fa42](https://github.com/AnthonyPorthouse/advent-of-code-2022/commit/210fa42eb7aaf07d45d1fc162b4a8ecda26fcad0))
+
 ## [1.4.0](https://github.com/AnthonyPorthouse/advent-of-code-2022/compare/v1.3.1...v1.4.0) (2022-12-09)
 
 
